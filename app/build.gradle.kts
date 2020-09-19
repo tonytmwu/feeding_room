@@ -38,11 +38,16 @@ dependencies {
     implementation("androidx.core:core-ktx:1.3.1")
     implementation("androidx.constraintlayout:constraintlayout:2.0.1")
     implementation("androidx.navigation:navigation-fragment:2.3.0")
-    implementation("androidx.navigation:navigation-ui:2.3.0")
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")
+    implementation("androidx.navigation:navigation-ui:2.3.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.0")
 
+    // fragment ktx
+    implementation("androidx.fragment:fragment-ktx:1.2.5")
+    // LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    // retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
