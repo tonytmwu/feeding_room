@@ -1,4 +1,4 @@
-package com.net.feedingroom.api.model
+package com.net.feedingroom.model
 
 import com.google.gson.annotations.SerializedName
 

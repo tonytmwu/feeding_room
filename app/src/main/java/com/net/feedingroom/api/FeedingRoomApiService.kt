@@ -1,6 +1,6 @@
 package com.net.feedingroom.api
 
-import com.net.feedingroom.api.model.FeedingRoomInfo
+import com.net.feedingroom.model.FeedingRoomInfo
 import retrofit2.http.GET
 import retrofit2.http.Query
 

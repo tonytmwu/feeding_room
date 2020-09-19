@@ -1,8 +1,7 @@
 package com.net.feedingroom.ui.feedingroom
 
 import androidx.lifecycle.*
-import com.net.feedingroom.api.model.FeedingRoom
-import com.net.feedingroom.api.model.FeedingRoomInfo
+import com.net.feedingroom.model.FeedingRoomInfo
 import com.net.feedingroom.repository.FeedingRoomService
 import kotlinx.coroutines.launch
 
