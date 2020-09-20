@@ -42,6 +42,11 @@ dependencies {
     implementation("androidx.navigation:navigation-ui:2.3.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.0")
 
+    // room
+    implementation("androidx.room:room-runtime:2.2.5")
+    kapt("androidx.room:room-compiler:2.2.5")
+    implementation("androidx.room:room-ktx:2.2.5")
+
     // fragment ktx
     implementation("androidx.fragment:fragment-ktx:1.2.5")
     // LiveData

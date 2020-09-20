@@ -1,7 +1,9 @@
 package com.net.feedingroom.model
 
+import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
+@Entity
 data class FeedingRoom(
     val address: String?,
     @SerializedName("adv_tag")
