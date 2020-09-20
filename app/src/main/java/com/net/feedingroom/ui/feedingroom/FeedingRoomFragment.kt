@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.net.feedingroom.R
 import com.net.feedingroom.databinding.FragmentFeedingRoomBinding
+import com.net.feedingroom.ui.view.DividerItemDecoration
 import com.net.feedingroom.ui.view.FeedingRoomAdapter
 
 class FeedingRoomFragment : Fragment() {
@@ -45,6 +46,7 @@ class FeedingRoomFragment : Fragment() {
     private fun setupRecyclerView() {
         vb.rvFeedingRoom.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        vb.rvFeedingRoom.addItemDecoration(DividerItemDecoration())
         vb.rvFeedingRoom.adapter = adapter
     }
 
