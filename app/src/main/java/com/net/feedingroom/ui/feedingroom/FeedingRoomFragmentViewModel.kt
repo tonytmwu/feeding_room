@@ -7,11 +7,6 @@ import kotlinx.coroutines.launch
 
 class FeedingRoomFragmentViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
-
     private val feedingRoomService = FeedingRoomService()
     private val _feedingRooms = MutableLiveData<FeedingRoomInfo?>()
     val feedingRooms: LiveData<FeedingRoomInfo?> = _feedingRooms
