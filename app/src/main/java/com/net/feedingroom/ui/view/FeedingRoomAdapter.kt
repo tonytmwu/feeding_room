@@ -23,9 +23,8 @@ class FeedingRoomAdapter: ListAdapter<FeedingRoom, FeedingRoomAdapter.ViewHolder
             vb.tvTitle.text = data.name
             vb.tvPhoneNumber.text = data.tel
             vb.tvAddress.text = data.address
-            data.photo?.split(" ")?.takeIf { it.isNotEmpty() }?.let { photos ->
-                val imgBaseUrl = "https://storage.googleapis.com/extreme-signer-123109.appspot.com/feedingroom/"
-                vb.ivPhoto.load(imgBaseUrl + photos[0])
+            data.photo?.split("\n")?.takeIf { it.isNotEmpty() }?.let { photos ->
+                vb.ivPhoto.load(FeedingRoom.IMG_BASE_URL + photos[0])
             }
         }
     }

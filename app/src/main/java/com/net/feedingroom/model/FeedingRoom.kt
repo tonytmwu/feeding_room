@@ -35,4 +35,8 @@ data class FeedingRoom(
     val unit: String?,
     val updated: String?,
     val zipCode: String?
-)
+) {
+    companion object {
+        const val IMG_BASE_URL = "https://storage.googleapis.com/extreme-signer-123109.appspot.com/feedingroom/"
+    }
+}
