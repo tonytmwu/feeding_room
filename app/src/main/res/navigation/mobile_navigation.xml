@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.net.feedingroom.ui.feedingroom.FeedingRoomFragment"
+        android:name="com.net.feedingroom.ui.feedingroom.MapsFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_feeding_room" />
 

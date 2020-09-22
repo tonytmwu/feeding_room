@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
+    id("kotlin-android")
 }
 
 android {
@@ -41,12 +42,14 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")
     implementation("androidx.navigation:navigation-ui:2.3.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.0")
-
     // room
     implementation("androidx.room:room-runtime:2.2.5")
+    implementation("com.google.android.gms:play-services-maps:17.0.0")
+    implementation("androidx.appcompat:appcompat:1.2.0")
     kapt("androidx.room:room-compiler:2.2.5")
     implementation("androidx.room:room-ktx:2.2.5")
-
+    // google map
+    implementation("com.google.android.libraries.maps:maps:3.1.0-beta")
     // fragment ktx
     implementation("androidx.fragment:fragment-ktx:1.2.5")
     // LiveData
