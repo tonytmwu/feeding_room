@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.net.feedingroom.databinding.FeedingRoomPhotoViewBinding
 import com.net.feedingroom.model.Photo
 
@@ -34,8 +35,12 @@ class FeedingRoomPhotoAdapter: ListAdapter<Photo, FeedingRoomPhotoAdapter.ViewHo
     }
 
     class ViewHolder(private val vb: FeedingRoomPhotoViewBinding): RecyclerView.ViewHolder(vb.root) {
+        private val transformation = RoundedCornersTransformation(10f, 10f, 10f, 10f)
+
         fun bind(data: Photo) {
-            vb.ivPhoto.load(data.url)
+            vb.ivPhoto.load(data.url) {
+                transformations(transformation)
+            }
         }
     }
 

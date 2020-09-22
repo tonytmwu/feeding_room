@@ -46,7 +46,7 @@ class FeedingRoomFragment : Fragment() {
     private fun setupRecyclerView() {
         vb.rvFeedingRoom.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        vb.rvFeedingRoom.addItemDecoration(DividerItemDecoration())
+        vb.rvFeedingRoom.addItemDecoration(DividerItemDecoration(5,0))
         vb.rvFeedingRoom.adapter = adapter
     }
 

@@ -37,7 +37,7 @@ class FeedingRoomAdapter: ListAdapter<FeedingRoom, FeedingRoomAdapter.ViewHolder
     private fun setupRecyclerView(context: Context, rv: RecyclerView) {
         rv.layoutManager =
             LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        rv.addItemDecoration(DividerItemDecoration())
+        rv.addItemDecoration(DividerItemDecoration(0, 5))
         rv.adapter = FeedingRoomPhotoAdapter()
     }
 
