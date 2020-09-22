@@ -44,7 +44,6 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.3.0")
     // room
     implementation("androidx.room:room-runtime:2.2.5")
-    implementation("com.google.android.gms:play-services-maps:17.0.0")
     implementation("androidx.appcompat:appcompat:1.2.0")
     kapt("androidx.room:room-compiler:2.2.5")
     implementation("androidx.room:room-ktx:2.2.5")
@@ -60,6 +59,9 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     // Coil
     implementation("io.coil-kt:coil:0.13.0")
+
+    implementation("androidx.activity:activity-ktx:1.2.0-alpha08")
+    implementation("androidx.fragment:fragment-ktx:1.3.0-alpha08")
 
     testImplementation("junit:junit:4.13")
     androidTestImplementation("androidx.test.ext:junit:1.1.2")
