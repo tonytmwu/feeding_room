@@ -26,10 +26,7 @@ class MapsFragment : Fragment() {
 
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
-        this.googleMap = googleMap.apply {
-            isMyLocationEnabled = true
-            uiSettings.isMyLocationButtonEnabled = true
-        }
+        this.googleMap = googleMap
         permissionRequest.launch(Manifest.permission.ACCESS_FINE_LOCATION)
         gotoDefaultLocation()
     }
@@ -59,9 +56,18 @@ class MapsFragment : Fragment() {
     @SuppressLint("MissingPermission")
     private fun gotoCurrentLocation() {
         fusedLocationClient.lastLocation.addOnSuccessListener { currentLocation ->
+            showCurrentLocation()
             val latLng = LatLng(currentLocation.latitude, currentLocation.longitude)
             val update = CameraUpdateFactory.newLatLngZoom(latLng, 12f)
             googleMap.animateCamera(update)
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun showCurrentLocation() {
+        googleMap.apply {
+            isMyLocationEnabled = true
+            uiSettings.isMyLocationButtonEnabled = true
         }
     }
 
