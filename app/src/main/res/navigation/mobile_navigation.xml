@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_map">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_map"
         android:name="com.net.feedingroom.ui.feedingroom.MapsFragment"
-        android:label="@string/title_home"
+        android:label="@string/title_map"
         tools:layout="@layout/fragment_feeding_room" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.net.feedingroom.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:id="@+id/navigation_search"
+        android:name="com.net.feedingroom.ui.feedingroom.FeedingRoomFragment"
+        android:label="@string/title_search"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
