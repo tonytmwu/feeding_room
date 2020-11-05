@@ -18,7 +18,7 @@ import com.net.feedingroom.ui.view.FeedingRoomAdapter
 
 class FeedingRoomFragment : Fragment() {
 
-    private val defaultLocation = "南港展覽館"
+    private var searchLocation = "南港展覽館"
 
     private var _vb: FragmentFeedingRoomBinding? = null
     private val vb get() = _vb!!
@@ -52,6 +52,7 @@ class FeedingRoomFragment : Fragment() {
                 EditorInfo.IME_ACTION_SEARCH -> {
                     searchFeedingRooms(v.text.toString())
                     hideKeyboard()
+                    v.clearFocus()
                     true
                 }
                 else -> false
@@ -73,7 +74,7 @@ class FeedingRoomFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        searchFeedingRooms(defaultLocation)
+        searchFeedingRooms(searchLocation)
     }
 
     private fun bindLiveData() {
@@ -84,5 +85,6 @@ class FeedingRoomFragment : Fragment() {
 
     private fun searchFeedingRooms(address: String) {
         vm.searchFeedingRooms(address)
+        searchLocation = address
     }
 }
