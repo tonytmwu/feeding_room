@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorFeedingRoomBg">
+    android:background="@color/colorFeedingRoomBg"
+    app:layoutDescription="@xml/motion_scene">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glTop"
@@ -84,4 +86,4 @@
         app:layout_constraintRight_toLeftOf="@+id/glRight"
         app:layout_constraintBottom_toBottomOf="@id/glBottom"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>
