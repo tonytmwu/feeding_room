@@ -39,8 +39,13 @@ class FeedingRoomFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupSearchView()
         setupRecyclerView()
         bindLiveData()
+    }
+
+    private fun setupSearchView() {
+
     }
 
     private fun setupRecyclerView() {
