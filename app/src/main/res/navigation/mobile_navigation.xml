@@ -3,13 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_map">
-
-    <fragment
-        android:id="@+id/navigation_map"
-        android:name="com.net.feedingroom.ui.feedingroom.MapsFragment"
-        android:label="@string/title_map"
-        tools:layout="@layout/fragment_feeding_room" />
+    app:startDestination="@+id/navigation_search">
 
     <fragment
         android:id="@+id/navigation_search"
