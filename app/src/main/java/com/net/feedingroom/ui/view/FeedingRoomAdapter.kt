@@ -20,6 +20,7 @@ class FeedingRoomAdapter: ListAdapter<FeedingRoom, FeedingRoomAdapter.ViewHolder
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
+        holder.init()
     }
 
     class ViewHolder(private val vb: ViewFeedingRoomBinding): RecyclerView.ViewHolder(vb.root) {
@@ -31,6 +32,10 @@ class FeedingRoomAdapter: ListAdapter<FeedingRoom, FeedingRoomAdapter.ViewHolder
                 Photo(FeedingRoom.IMG_BASE_URL + fileName)
             }
             (vb.rvPhotos.adapter as? ListAdapter<Photo, FeedingRoomPhotoAdapter.ViewHolder>)?.submitList(photos)
+        }
+
+        fun init() {
+            vb.mlRoot.transitionToStart()
         }
     }
 
