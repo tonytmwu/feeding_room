@@ -35,17 +35,17 @@
         <Constraint android:id="@id/tvTitle">
             <CustomAttribute
                 motion:attributeName="alpha"
-                motion:customFloatValue="0.1" />
+                motion:customFloatValue="0.5" />
         </Constraint>
         <Constraint android:id="@id/tvPhoneNumber">
             <CustomAttribute
                 motion:attributeName="alpha"
-                motion:customFloatValue="0.1" />
+                motion:customFloatValue="0.5" />
         </Constraint>
         <Constraint android:id="@id/tvAddress">
             <CustomAttribute
                 motion:attributeName="alpha"
-                motion:customFloatValue="0.1" />
+                motion:customFloatValue="0.5" />
         </Constraint>
     </ConstraintSet>
 </MotionScene>
