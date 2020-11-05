@@ -58,8 +58,8 @@ dependencies {
     // Coil
     implementation("io.coil-kt:coil:0.13.0")
 
-    implementation("androidx.activity:activity-ktx:1.2.0-alpha08")
-    implementation("androidx.fragment:fragment-ktx:1.3.0-alpha08")
+    implementation("androidx.activity:activity-ktx:1.2.0-beta01")
+    implementation("androidx.fragment:fragment-ktx:1.3.0-beta01")
 
     testImplementation("junit:junit:4.13.1")
     androidTestImplementation("androidx.test.ext:junit:1.1.2")
