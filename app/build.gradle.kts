@@ -36,12 +36,10 @@ android {
 dependencies {
     implementation(fileTree( mapOf("include" to listOf("*.jar", "*.aar"), "dir" to "libs") ))
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${Version.kotlin}")
-    implementation("androidx.core:core-ktx:1.3.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.1")
-    implementation("androidx.navigation:navigation-fragment:2.3.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")
-    implementation("androidx.navigation:navigation-ui:2.3.0")
-    implementation("androidx.navigation:navigation-ui-ktx:2.3.0")
+    implementation("androidx.core:core-ktx:1.3.2")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.3.1")
+    implementation("androidx.navigation:navigation-ui-ktx:2.3.1")
     // room
     implementation("androidx.room:room-runtime:2.2.5")
     implementation("androidx.appcompat:appcompat:1.2.0")
@@ -63,7 +61,7 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.2.0-alpha08")
     implementation("androidx.fragment:fragment-ktx:1.3.0-alpha08")
 
-    testImplementation("junit:junit:4.13")
+    testImplementation("junit:junit:4.13.1")
     androidTestImplementation("androidx.test.ext:junit:1.1.2")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
 }
