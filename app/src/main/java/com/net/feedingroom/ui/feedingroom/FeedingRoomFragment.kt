@@ -2,17 +2,19 @@ package com.net.feedingroom.ui.feedingroom
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.view.inputmethod.InputMethodManager.HIDE_IMPLICIT_ONLY
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.net.feedingroom.databinding.FragmentFeedingRoomBinding
+import com.net.feedingroom.ui.activity.MainActivityViewModel
 import com.net.feedingroom.ui.view.DividerItemDecoration
 import com.net.feedingroom.ui.view.FeedingRoomAdapter
 
@@ -23,6 +25,7 @@ class FeedingRoomFragment : Fragment() {
     private var _vb: FragmentFeedingRoomBinding? = null
     private val vb get() = _vb!!
     private val vm by viewModels<FeedingRoomFragmentViewModel>()
+    private val vmMainActivity: MainActivityViewModel by activityViewModels()
     private val adapter by lazy { FeedingRoomAdapter() }
 
     override fun onCreateView(
@@ -80,6 +83,11 @@ class FeedingRoomFragment : Fragment() {
     private fun bindLiveData() {
         vm.feedingRooms.observe(viewLifecycleOwner) { info ->
             adapter.submitList(info?.rooms)
+        }
+
+        vmMainActivity.currentLocationLiveData.observe(viewLifecycleOwner) { latLng ->
+            // TODO get data by gps
+            Log.d(javaClass.simpleName, "latLng = (${latLng.latitude}, ${latLng.longitude})")
         }
     }
 
