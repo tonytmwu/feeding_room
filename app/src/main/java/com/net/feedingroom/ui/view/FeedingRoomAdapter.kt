@@ -31,9 +31,6 @@ class FeedingRoomAdapter(
     class ViewHolder(private val vb: ViewFeedingRoomBinding,
                      private val listener: FeedingRoomAdapterListener?): RecyclerView.ViewHolder(vb.root) {
         fun bind(data: FeedingRoom) {
-            vb.tvTitle.setOnClickListener {
-                listener?.onSelectFeedingRoom(data)
-            }
             vb.tvTitle.text = data.name
             vb.tvPhoneNumber.text = data.tel
             vb.tvAddress.text = data.address
@@ -41,6 +38,9 @@ class FeedingRoomAdapter(
                 Photo(FeedingRoom.IMG_BASE_URL + fileName)
             }
             (vb.rvPhotos.adapter as? ListAdapter<Photo, FeedingRoomPhotoAdapter.ViewHolder>)?.submitList(photos)
+            vb.viewClick.setOnClickListener {
+                listener?.onSelectFeedingRoom(data)
+            }
         }
 
         fun init() {

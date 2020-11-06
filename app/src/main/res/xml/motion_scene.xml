@@ -47,5 +47,9 @@
                 motion:attributeName="alpha"
                 motion:customFloatValue="0.5" />
         </Constraint>
+        <Constraint android:id="@id/viewClick"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintRight_toLeftOf="parent"/>
     </ConstraintSet>
 </MotionScene>
