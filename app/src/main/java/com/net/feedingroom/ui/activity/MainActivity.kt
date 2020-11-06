@@ -1,19 +1,17 @@
-package com.net.feedingroom
+package com.net.feedingroom.ui.activity
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.net.feedingroom.R
 import com.net.feedingroom.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private var _vb: ActivityMainBinding? = null
     private val vb get() = _vb!!
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
