@@ -2,6 +2,7 @@ package com.net.feedingroom.ui.feedingroom
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
@@ -18,11 +19,13 @@ import com.google.android.libraries.maps.SupportMapFragment
 import com.google.android.libraries.maps.model.LatLng
 import com.google.android.libraries.maps.GoogleMap
 import com.net.feedingroom.R
+import com.net.feedingroom.listener.LocationListener
 
 class MapsFragment : Fragment() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var googleMap: GoogleMap
+    private var locationListener: LocationListener? = null
 
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
@@ -38,6 +41,13 @@ class MapsFragment : Fragment() {
                 gotoCurrentLocation()
             }
         }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (context as? LocationListener)?.let {
+            locationListener = it
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,11 +65,14 @@ class MapsFragment : Fragment() {
 
     @SuppressLint("MissingPermission")
     private fun gotoCurrentLocation() {
-        fusedLocationClient.lastLocation.addOnSuccessListener { currentLocation ->
-            showCurrentLocation()
-            val latLng = LatLng(currentLocation.latitude, currentLocation.longitude)
-            val update = CameraUpdateFactory.newLatLngZoom(latLng, 12f)
-            googleMap.animateCamera(update)
+        fusedLocationClient.lastLocation.addOnSuccessListener {
+            it?.let { currentLocation ->
+                locationListener?.getCurrentLocation(currentLocation.latitude, currentLocation.longitude)
+                showCurrentLocation()
+                val latLng = LatLng(currentLocation.latitude, currentLocation.longitude)
+                val update = CameraUpdateFactory.newLatLngZoom(latLng, 12f)
+                googleMap.animateCamera(update)
+            }
         }
     }
 
