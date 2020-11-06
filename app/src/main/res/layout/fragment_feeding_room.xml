@@ -55,7 +55,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        app:behavior_peekHeight="120dp"
+        app:behavior_peekHeight="200dp"
+        app:behavior_hideable="true"
         android:background="@drawable/bottom_sheet_bg"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
