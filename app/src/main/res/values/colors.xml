@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#AE6BAA</color>
     <color name="colorAccent">#AE6BAA</color>
     <color name="colorFeedingRoomBg">#F2F2F2</color>
+    <color name="colorBottomSheetBg">@android:color/white</color>
+    <color name="colorBottomSheetDivide">@android:color/darker_gray</color>
 </resources>
