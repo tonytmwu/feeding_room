@@ -4,18 +4,23 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.*
-import coil.load
 import com.net.feedingroom.databinding.ViewFeedingRoomBinding
 import com.net.feedingroom.model.FeedingRoom
-import com.net.feedingroom.model.FeedingRoomInfo
 import com.net.feedingroom.model.Photo
 
-class FeedingRoomAdapter: ListAdapter<FeedingRoom, FeedingRoomAdapter.ViewHolder>(diffCallback) {
+class FeedingRoomAdapter(
+    private val listener: FeedingRoomAdapterListener? = null
+): ListAdapter<FeedingRoom, FeedingRoomAdapter.ViewHolder>(diffCallback) {
+
+    interface FeedingRoomAdapterListener {
+        fun onSelectFeedingRoom(room: FeedingRoom)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val vb = ViewFeedingRoomBinding.inflate(inflater, parent, false)
         setupRecyclerView(parent.context, vb.rvPhotos)
-        return ViewHolder(vb)
+        return ViewHolder(vb, listener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -23,8 +28,12 @@ class FeedingRoomAdapter: ListAdapter<FeedingRoom, FeedingRoomAdapter.ViewHolder
         holder.init()
     }
 
-    class ViewHolder(private val vb: ViewFeedingRoomBinding): RecyclerView.ViewHolder(vb.root) {
+    class ViewHolder(private val vb: ViewFeedingRoomBinding,
+                     private val listener: FeedingRoomAdapterListener?): RecyclerView.ViewHolder(vb.root) {
         fun bind(data: FeedingRoom) {
+            vb.tvTitle.setOnClickListener {
+                listener?.onSelectFeedingRoom(data)
+            }
             vb.tvTitle.text = data.name
             vb.tvPhoneNumber.text = data.tel
             vb.tvAddress.text = data.address

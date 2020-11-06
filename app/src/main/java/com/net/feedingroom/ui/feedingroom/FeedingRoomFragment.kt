@@ -14,11 +14,12 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.net.feedingroom.databinding.FragmentFeedingRoomBinding
+import com.net.feedingroom.model.FeedingRoom
 import com.net.feedingroom.ui.activity.MainActivityViewModel
 import com.net.feedingroom.ui.view.DividerItemDecoration
 import com.net.feedingroom.ui.view.FeedingRoomAdapter
 
-class FeedingRoomFragment : Fragment() {
+class FeedingRoomFragment : Fragment(), FeedingRoomAdapter.FeedingRoomAdapterListener {
 
     private var searchLocation = "南港展覽館"
 
@@ -26,7 +27,7 @@ class FeedingRoomFragment : Fragment() {
     private val vb get() = _vb!!
     private val vm by viewModels<FeedingRoomFragmentViewModel>()
     private val vmMainActivity: MainActivityViewModel by activityViewModels()
-    private val adapter by lazy { FeedingRoomAdapter() }
+    private val adapter by lazy { FeedingRoomAdapter(this) }
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -94,5 +95,9 @@ class FeedingRoomFragment : Fragment() {
     private fun searchFeedingRooms(address: String) {
         vm.searchFeedingRooms(address)
         searchLocation = address
+    }
+
+    override fun onSelectFeedingRoom(room: FeedingRoom) {
+        vmMainActivity.updateSelectedFeedingRoom(room)
     }
 }

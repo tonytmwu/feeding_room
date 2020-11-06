@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.activityViewModels
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
@@ -20,12 +21,14 @@ import com.google.android.libraries.maps.model.LatLng
 import com.google.android.libraries.maps.GoogleMap
 import com.net.feedingroom.R
 import com.net.feedingroom.listener.LocationListener
+import com.net.feedingroom.ui.activity.MainActivityViewModel
 
 class MapsFragment : Fragment() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var googleMap: GoogleMap
     private var locationListener: LocationListener? = null
+    private val vmMainActivity by activityViewModels<MainActivityViewModel>()
 
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
@@ -61,6 +64,15 @@ class MapsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
+        bindLiveData()
+    }
+
+    private fun bindLiveData() {
+        vmMainActivity.selectedFeedingRoomLiveData.observe(viewLifecycleOwner) {
+            if(it.latitude != null && it.longitude != null) {
+                gotoPosition(LatLng(it.latitude.toDouble(), it.longitude.toDouble()))
+            }
+        }
     }
 
     @SuppressLint("MissingPermission")
@@ -69,9 +81,7 @@ class MapsFragment : Fragment() {
             it?.let { currentLocation ->
                 locationListener?.getCurrentLocation(currentLocation.latitude, currentLocation.longitude)
                 showCurrentLocation()
-                val latLng = LatLng(currentLocation.latitude, currentLocation.longitude)
-                val update = CameraUpdateFactory.newLatLngZoom(latLng, 12f)
-                googleMap.animateCamera(update)
+                gotoPosition(LatLng(currentLocation.latitude, currentLocation.longitude), 15f)
             }
         }
     }
@@ -84,9 +94,14 @@ class MapsFragment : Fragment() {
         }
     }
 
+    private fun gotoPosition(latLng: LatLng, zoomLevel: Float = 17f) {
+        val update = CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel)
+        googleMap.animateCamera(update)
+    }
+
     private fun gotoDefaultLocation() {
         val sydney = LatLng(-34.0, 151.0)
-        this.googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        gotoPosition(sydney, 12f)
     }
 
 }
