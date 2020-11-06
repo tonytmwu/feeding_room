@@ -7,14 +7,25 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.net.feedingroom.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    private var _vb: ActivityMainBinding? = null
+    private val vb get() = _vb!!
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        _vb = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(vb.root)
+        val navView: BottomNavigationView = vb.navView
         val navController = findNavController(R.id.nav_host_fragment)
         navView.setupWithNavController(navController)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _vb = null
     }
 }
