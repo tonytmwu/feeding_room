@@ -13,6 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.net.feedingroom.databinding.FragmentFeedingRoomBinding
 import com.net.feedingroom.model.FeedingRoom
 import com.net.feedingroom.ui.activity.MainActivityViewModel
@@ -99,5 +100,14 @@ class FeedingRoomFragment : Fragment(), FeedingRoomAdapter.FeedingRoomAdapterLis
 
     override fun onSelectFeedingRoom(room: FeedingRoom) {
         vmMainActivity.updateSelectedFeedingRoom(room)
+        expandBottomSheet()
+    }
+
+    private fun expandBottomSheet() {
+        BottomSheetBehavior.from(vb.bottomSheetRoot)?.let { bottomSheet ->
+            if(bottomSheet.state == BottomSheetBehavior.STATE_HIDDEN) {
+                bottomSheet.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
+        }
     }
 }
