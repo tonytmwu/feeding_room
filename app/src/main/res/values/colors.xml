@@ -6,4 +6,6 @@
     <color name="colorFeedingRoomBg">#F2F2F2</color>
     <color name="colorBottomSheetBg">@android:color/white</color>
     <color name="colorBottomSheetDivide">@android:color/darker_gray</color>
+    <color name="colorLoadingDarkGray">#4F4F4F</color>
+    <color name="colorLoadingGray">#7B7B7B</color>
 </resources>
