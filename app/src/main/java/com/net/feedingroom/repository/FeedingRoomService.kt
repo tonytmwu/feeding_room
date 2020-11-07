@@ -6,6 +6,15 @@ class FeedingRoomService {
 
     private val apiClient = RetrofitClient.client
 
-    suspend fun searchFeedingRoom(address: String) = apiClient.searchFeedingRooms(address)
+    suspend fun searchFeedingRoom(address: String) = execute { apiClient.searchFeedingRooms(address) }
+
+    private suspend fun <T> execute(action: suspend () -> T?): T? {
+        return try {
+            action()
+        } catch (t: Throwable) {
+            t.printStackTrace()
+            null
+        }
+    }
 
 }
