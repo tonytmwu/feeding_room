@@ -3,25 +3,26 @@ package com.net.feedingroom.ui.feedingroom
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
-import androidx.fragment.app.Fragment
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-
 import com.google.android.libraries.maps.CameraUpdateFactory
+import com.google.android.libraries.maps.GoogleMap
 import com.google.android.libraries.maps.OnMapReadyCallback
 import com.google.android.libraries.maps.SupportMapFragment
 import com.google.android.libraries.maps.model.LatLng
-import com.google.android.libraries.maps.GoogleMap
+import com.google.android.libraries.maps.model.Marker
+import com.google.android.libraries.maps.model.MarkerOptions
 import com.net.feedingroom.R
 import com.net.feedingroom.listener.LocationListener
 import com.net.feedingroom.ui.activity.MainActivityViewModel
+
 
 class MapsFragment : Fragment() {
 
@@ -29,6 +30,7 @@ class MapsFragment : Fragment() {
     private lateinit var googleMap: GoogleMap
     private var locationListener: LocationListener? = null
     private val vmMainActivity by activityViewModels<MainActivityViewModel>()
+    private var marker: Marker? = null
 
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
@@ -40,7 +42,9 @@ class MapsFragment : Fragment() {
     private val permissionRequest =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if(isGranted) {
-                fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+                fusedLocationClient = LocationServices.getFusedLocationProviderClient(
+                    requireActivity()
+                )
                 gotoCurrentLocation()
             }
         }
@@ -70,7 +74,9 @@ class MapsFragment : Fragment() {
     private fun bindLiveData() {
         vmMainActivity.selectedFeedingRoomLiveData.observe(viewLifecycleOwner) {
             if(it.latitude != null && it.longitude != null) {
-                gotoPosition(LatLng(it.latitude.toDouble(), it.longitude.toDouble()))
+                val latLng = LatLng(it.latitude.toDouble(), it.longitude.toDouble())
+                gotoPosition(latLng)
+                addMarker(latLng, it.name)
             }
         }
     }
@@ -79,7 +85,10 @@ class MapsFragment : Fragment() {
     private fun gotoCurrentLocation() {
         fusedLocationClient.lastLocation.addOnSuccessListener {
             it?.let { currentLocation ->
-                locationListener?.getCurrentLocation(currentLocation.latitude, currentLocation.longitude)
+                locationListener?.getCurrentLocation(
+                    currentLocation.latitude,
+                    currentLocation.longitude
+                )
                 showCurrentLocation()
                 gotoPosition(LatLng(currentLocation.latitude, currentLocation.longitude), 15f)
             }
@@ -97,6 +106,12 @@ class MapsFragment : Fragment() {
     private fun gotoPosition(latLng: LatLng, zoomLevel: Float = 17f) {
         val update = CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel)
         googleMap.animateCamera(update)
+    }
+
+    private fun addMarker(latLng: LatLng, title: String?) {
+        marker?.remove()
+        marker = googleMap.addMarker(MarkerOptions().position(latLng)
+            .title(title))
     }
 
     private fun gotoDefaultLocation() {
