@@ -40,15 +40,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="@+id/guideStart"
             app:layout_constraintRight_toRightOf="@+id/guideEnd"
-            app:layout_constraintTop_toBottomOf="@+id/rvFeedingRoom"/>
+            app:layout_constraintTop_toBottomOf="@+id/shimmerLoading"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvFeedingRoom"
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerLoading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/tvSearch"
             app:layout_constraintLeft_toLeftOf="@+id/guideStart"
-            app:layout_constraintRight_toRightOf="@+id/guideEnd"/>
+            app:layout_constraintRight_toRightOf="@+id/guideEnd">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvFeedingRoom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

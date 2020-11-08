@@ -17,6 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.net.feedingroom.databinding.FragmentFeedingRoomBinding
 import com.net.feedingroom.model.FeedingRoom
 import com.net.feedingroom.ui.activity.MainActivityViewModel
+import com.net.feedingroom.ui.state.LoadingState
 import com.net.feedingroom.ui.view.DividerItemDecoration
 import com.net.feedingroom.ui.view.FeedingRoomAdapter
 
@@ -87,8 +88,11 @@ class FeedingRoomFragment : Fragment(), FeedingRoomAdapter.FeedingRoomAdapterLis
             adapter.submitList(info?.rooms)
         }
 
-        vm.loadingState.observe(viewLifecycleOwner) {
-            Log.d(javaClass.simpleName, "loadingState = $it")
+        vm.loadingState.observe(viewLifecycleOwner) { state ->
+            when(state) {
+                LoadingState.Loading -> vb.shimmerLoading.showShimmer(true)
+                LoadingState.Done -> vb.shimmerLoading.hideShimmer()
+            }
         }
 
         vmMainActivity.currentLocationLiveData.observe(viewLifecycleOwner) { latLng ->
