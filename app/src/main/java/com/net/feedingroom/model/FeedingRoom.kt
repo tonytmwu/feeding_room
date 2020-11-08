@@ -5,38 +5,44 @@ import com.google.gson.annotations.SerializedName
 
 @Entity
 data class FeedingRoom(
-    val address: String?,
+    val address: String? = null,
     @SerializedName("adv_tag")
-    val advTag: String?,
-    val attribute: String?,
+    val advTag: String? = null,
+    val attribute: String? = null,
     @SerializedName("basic_tag")
-    val basicTag: String?,
+    val basicTag: String? = null,
     @SerializedName("build_type")
-    val buildType: String?,
-    val category: String?,
-    val certi: String?,
-    val contact: String?,
-    val created: String?,
-    val distance: Float?,
-    val district: String?,
+    val buildType: String? = null,
+    val category: String? = null,
+    val certi: String? = null,
+    val contact: String? = null,
+    val created: String? = null,
+    val distance: Float? = null,
+    val district: String? = null,
     @SerializedName("location_latitude")
-    val latitude: Float?,
+    val latitude: Float? = null,
     @SerializedName("location_longitude")
-    val longitude: Float?,
-    val mngtype: String?,
-    val name: String?,
-    val number: String?,
+    val longitude: Float? = null,
+    val mngtype: String? = null,
+    val name: String? = null,
+    val number: String? = null,
     @SerializedName("open_time")
-    val openTime: String?,
-    val photo: String?,
-    val position: String?,
-    val remind: String?,
-    val tel: String?,
-    val unit: String?,
-    val updated: String?,
-    val zipCode: String?
+    val openTime: String? = null,
+    val photo: String? = null,
+    val position: String? = null,
+    val remind: String? = null,
+    val tel: String? = null,
+    val unit: String? = null,
+    val updated: String? = null,
+    val zipCode: String? = null
 ) {
     companion object {
         const val IMG_BASE_URL = "https://storage.googleapis.com/extreme-signer-123109.appspot.com/feedingroom/"
+
+        val mockData get() = run {
+            (0..6).map {
+                FeedingRoom()
+            }
+        }
     }
 }

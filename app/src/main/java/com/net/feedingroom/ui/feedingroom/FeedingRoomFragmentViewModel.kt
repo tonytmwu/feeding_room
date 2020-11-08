@@ -15,11 +15,15 @@ class FeedingRoomFragmentViewModel : ViewModel() {
     val loadingState: LiveData<LoadingState> = _loadingState
 
     fun searchFeedingRooms(address: String) {
-        _loadingState.postValue(LoadingState.Loading)
+        sendLoadingState(LoadingState.Loading, FeedingRoomInfo.mockData)
         viewModelScope.launch {
             val rooms = feedingRoomService.searchFeedingRoom(address)
-            _feedingRooms.postValue(rooms)
-            _loadingState.postValue(LoadingState.Done(rooms))
+            sendLoadingState(LoadingState.Done, rooms)
         }
+    }
+
+    private fun sendLoadingState(state: LoadingState, data: FeedingRoomInfo?) {
+        _loadingState.postValue(state)
+        _feedingRooms.postValue(data)
     }
 }

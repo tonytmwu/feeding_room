@@ -4,6 +4,6 @@ sealed class LoadingState {
 
     object Loading: LoadingState()
 
-    data class Done<T>(val result: T?): LoadingState()
+    object Done: LoadingState()
 
 }
