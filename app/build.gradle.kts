@@ -5,6 +5,7 @@ plugins {
     kotlin("kapt")
     id("kotlin-android")
     id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -45,6 +46,7 @@ dependencies {
     // firebase
     implementation(platform("com.google.firebase:firebase-bom:26.0.0"))
     implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-crashlytics-ktx")
 
     // room
     implementation("androidx.room:room-runtime:2.2.5")
