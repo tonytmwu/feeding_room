@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "687396866375",
+    "firebase_url": "https://feeding-room-b3f00.firebaseio.com",
+    "project_id": "feeding-room-b3f00",
+    "storage_bucket": "feeding-room-b3f00.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687396866375:android:eee980eca57b0ef4b2e462",
+        "android_client_info": {
+          "package_name": "com.net.feedingroom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "687396866375-v78ek9r0pn8pf8erah94gvce6li80ehg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpw4O4brHQt8c6skJ09efhF9q9hCHujH8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "687396866375-v78ek9r0pn8pf8erah94gvce6li80ehg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

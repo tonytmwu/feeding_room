@@ -4,6 +4,7 @@ plugins {
     kotlin("android.extensions")
     kotlin("kapt")
     id("kotlin-android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -40,6 +41,11 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.1")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.1")
+
+    // firebase
+    implementation(platform("com.google.firebase:firebase-bom:26.0.0"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
+
     // room
     implementation("androidx.room:room-runtime:2.2.5")
     implementation("androidx.appcompat:appcompat:1.2.0")
@@ -47,6 +53,7 @@ dependencies {
     implementation("androidx.room:room-ktx:2.2.5")
     // google map
     implementation("com.google.android.libraries.maps:maps:3.1.0-beta")
+    implementation("com.google.android.gms:play-services-gcm:17.0.0")
     // fragment ktx
     implementation("androidx.fragment:fragment-ktx:1.2.5")
     // LiveData
