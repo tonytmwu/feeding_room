@@ -15,14 +15,30 @@ class FeedingRoomFragmentViewModel : ViewModel() {
     val loadingState: LiveData<LoadingState> = _loadingState
 
     fun searchFeedingRooms(address: String) {
+        inLoading()
+        viewModelScope.launch {
+            val rooms = feedingRoomService.searchFeedingRoom(address)
+            inLoaded(rooms)
+        }
+    }
+
+    fun searchFeedingRooms(lat: Double, lng: Double) {
+        inLoading()
+        viewModelScope.launch {
+            val rooms = feedingRoomService.searchFeedingRoom(lat, lng)
+            inLoaded(rooms)
+        }
+    }
+
+    private fun inLoading() {
         _loadingState.postValue(LoadingState.Loading)
         if(_feedingRooms.value?.rooms == null || _feedingRooms.value?.rooms?.isEmpty() == true) {
             _feedingRooms.postValue(FeedingRoomInfo.mockData)
         }
-        viewModelScope.launch {
-            val rooms = feedingRoomService.searchFeedingRoom(address)
-            _feedingRooms.postValue(rooms)
-            _loadingState.postValue(LoadingState.Done)
-        }
+    }
+
+    private fun inLoaded(rooms: FeedingRoomInfo?) {
+        _feedingRooms.postValue(rooms)
+        _loadingState.postValue(LoadingState.Done)
     }
 }

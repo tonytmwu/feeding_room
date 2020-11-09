@@ -9,4 +9,8 @@ interface FeedingRoomApiService {
     @GET("/search_feeding_rooms")
     suspend fun searchFeedingRooms(@Query("addr") address: String): FeedingRoomInfo?
 
+    @GET("/search_feeding_rooms")
+    suspend fun searchFeedingRooms(@Query("latitude") lat: Double,
+                                   @Query("longitude") lng: Double): FeedingRoomInfo?
+
 }

@@ -8,6 +8,8 @@ class FeedingRoomService {
 
     suspend fun searchFeedingRoom(address: String) = execute { apiClient.searchFeedingRooms(address) }
 
+    suspend fun searchFeedingRoom(lat: Double, lng: Double) = execute { apiClient.searchFeedingRooms(lat, lng) }
+
     private suspend fun <T> execute(action: suspend () -> T?): T? {
         return try {
             action()

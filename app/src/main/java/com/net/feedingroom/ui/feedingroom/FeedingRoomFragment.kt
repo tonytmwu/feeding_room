@@ -98,6 +98,7 @@ class FeedingRoomFragment : Fragment(), FeedingRoomAdapter.FeedingRoomAdapterLis
         vmMainActivity.currentLocationLiveData.observe(viewLifecycleOwner) { latLng ->
             // TODO get data by gps
             Log.d(javaClass.simpleName, "latLng = (${latLng.latitude}, ${latLng.longitude})")
+            vm.searchFeedingRooms(latLng.latitude, latLng.longitude)
         }
     }
 
