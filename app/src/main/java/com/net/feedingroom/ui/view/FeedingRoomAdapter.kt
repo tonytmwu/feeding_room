@@ -93,6 +93,7 @@ class FeedingRoomAdapter(
             }
             (vb.rvPhotos.adapter as? ListAdapter<Photo, FeedingRoomPhotoAdapter.ViewHolder>)?.submitList(photos)
             vb.viewClick.setOnClickListener {
+                this.init()
                 listener?.onSelectFeedingRoom(data, position)
             }
             setSelectedColor(vb, data.isSelected)
