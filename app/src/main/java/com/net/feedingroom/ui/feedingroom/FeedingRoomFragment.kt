@@ -102,8 +102,10 @@ class FeedingRoomFragment : Fragment(), FeedingRoomAdapter.FeedingRoomAdapterLis
         searchLocation = address
     }
 
-    override fun onSelectFeedingRoom(room: FeedingRoom) {
+    override fun onSelectFeedingRoom(room: FeedingRoom, position: Int?) {
         vmMainActivity.updateSelectedFeedingRoom(room)
+        adapter.cleanSelectedItem()
+        position?.let { adapter.selectItem(it) }
         expandBottomSheet()
     }
 

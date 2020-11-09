@@ -8,4 +8,5 @@
     <color name="colorBottomSheetDivide">@android:color/darker_gray</color>
     <color name="colorLoadingDarkGray">#4F4F4F</color>
     <color name="colorLoadingGray">#7B7B7B</color>
+    <color name="colorText">@android:color/black</color>
 </resources>

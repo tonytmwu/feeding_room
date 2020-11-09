@@ -45,4 +45,6 @@ data class FeedingRoom(
             }
         }
     }
+
+    var isSelected: Boolean = false
 }
