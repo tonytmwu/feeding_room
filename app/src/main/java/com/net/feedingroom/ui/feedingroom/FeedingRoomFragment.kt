@@ -78,11 +78,6 @@ class FeedingRoomFragment : Fragment(), FeedingRoomAdapter.FeedingRoomAdapterLis
         vb.rvFeedingRoom.adapter = adapter
     }
 
-    override fun onResume() {
-        super.onResume()
-        searchFeedingRooms(searchLocation)
-    }
-
     private fun bindLiveData() {
         vm.feedingRooms.observe(viewLifecycleOwner) { info ->
             adapter.submitList(info?.rooms)
