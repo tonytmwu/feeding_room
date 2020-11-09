@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
+import com.net.feedingroom.R
 import com.net.feedingroom.databinding.FeedingRoomPhotoViewBinding
 import com.net.feedingroom.model.Photo
 
@@ -39,6 +40,8 @@ class FeedingRoomPhotoAdapter: ListAdapter<Photo, FeedingRoomPhotoAdapter.ViewHo
 
         fun bind(data: Photo) {
             vb.ivPhoto.load(data.url) {
+                crossfade(true)
+                error(R.drawable.ic_placeholder_img)
                 transformations(transformation)
             }
         }
