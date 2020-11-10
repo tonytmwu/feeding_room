@@ -69,7 +69,7 @@ class FeedingRoomAdapter(
         rv.layoutManager =
             LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         rv.addItemDecoration(DividerItemDecoration(0, 5))
-        rv.adapter = FeedingRoomPhotoAdapter()
+        rv.adapter = FeedingRoomThumbnailAdapter()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -91,7 +91,7 @@ class FeedingRoomAdapter(
             val photos = data.photo?.split("\n")?.takeIf { it.isNotEmpty() }?.map { fileName ->
                 Photo(FeedingRoom.IMG_BASE_URL + fileName)
             }
-            (vb.rvPhotos.adapter as? ListAdapter<Photo, FeedingRoomPhotoAdapter.ViewHolder>)?.submitList(photos)
+            (vb.rvPhotos.adapter as? ListAdapter<Photo, FeedingRoomThumbnailAdapter.ViewHolder>)?.submitList(photos)
             vb.viewClick.setOnClickListener {
                 this.init()
                 listener?.onSelectFeedingRoom(data, position)
