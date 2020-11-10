@@ -23,18 +23,6 @@ class FeedingRoomThumbnailAdapter: ListAdapter<Photo, FeedingRoomThumbnailAdapte
         holder.bind(getItem(position))
     }
 
-    companion object {
-        val diffCallback = object: DiffUtil.ItemCallback<Photo>() {
-            override fun areItemsTheSame(oldItem: Photo, newItem: Photo): Boolean {
-                return oldItem.url == newItem.url
-            }
-
-            override fun areContentsTheSame(oldItem: Photo, newItem: Photo): Boolean {
-                return oldItem == newItem
-            }
-        }
-    }
-
     class ViewHolder(private val vb: ViewFeedingRoomThumbnailBinding): RecyclerView.ViewHolder(vb.root) {
         private val transformation = RoundedCornersTransformation(10f, 10f, 10f, 10f)
 
@@ -43,6 +31,18 @@ class FeedingRoomThumbnailAdapter: ListAdapter<Photo, FeedingRoomThumbnailAdapte
                 crossfade(true)
                 error(R.drawable.ic_placeholder_img)
                 transformations(transformation)
+            }
+        }
+    }
+
+    companion object {
+        val diffCallback = object: DiffUtil.ItemCallback<Photo>() {
+            override fun areItemsTheSame(oldItem: Photo, newItem: Photo): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: Photo, newItem: Photo): Boolean {
+                return oldItem.url == newItem.url
             }
         }
     }
