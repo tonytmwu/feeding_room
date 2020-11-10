@@ -80,6 +80,11 @@ class FeedingRoomFragment : Fragment(), FeedingRoomAdapter.FeedingRoomAdapterLis
 
     private fun bindLiveData() {
         vm.feedingRooms.observe(viewLifecycleOwner) { info ->
+            if(info?.rooms == null || info.rooms.isEmpty()) {
+                showNoData()
+            } else {
+                showData()
+            }
             adapter.submitList(info?.rooms)
         }
 
@@ -95,6 +100,16 @@ class FeedingRoomFragment : Fragment(), FeedingRoomAdapter.FeedingRoomAdapterLis
             Log.d(javaClass.simpleName, "latLng = (${latLng.latitude}, ${latLng.longitude})")
             vm.searchFeedingRooms(latLng.latitude, latLng.longitude)
         }
+    }
+
+    private fun showNoData() {
+        vb.tvEmpty.visibility = View.VISIBLE
+        vb.rvFeedingRoom.visibility = View.GONE
+    }
+
+    private fun showData() {
+        vb.tvEmpty.visibility = View.GONE
+        vb.rvFeedingRoom.visibility = View.VISIBLE
     }
 
     private fun searchFeedingRooms(address: String) {

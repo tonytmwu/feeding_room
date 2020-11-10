@@ -5,4 +5,5 @@
     <string name="title_notifications">Notifications</string>
 
     <string name="search_bar_hint">請輸入搜尋地點...</string>
+    <string name="empty_data">附近沒找到哺乳室，請再試試搜尋其他地點</string>
 </resources>
