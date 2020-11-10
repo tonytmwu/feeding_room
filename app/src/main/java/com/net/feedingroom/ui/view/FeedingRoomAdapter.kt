@@ -88,10 +88,7 @@ class FeedingRoomAdapter(
             vb.tvTitle.text = data.name
             vb.tvPhoneNumber.text = data.tel
             vb.tvAddress.text = data.address
-            val photos = data.photo?.split("\n")?.takeIf { it.isNotEmpty() }?.map { fileName ->
-                Photo(FeedingRoom.IMG_BASE_URL + fileName)
-            }
-            (vb.rvPhotos.adapter as? ListAdapter<Photo, FeedingRoomThumbnailAdapter.ViewHolder>)?.submitList(photos)
+            (vb.rvPhotos.adapter as? ListAdapter<Photo, FeedingRoomThumbnailAdapter.ViewHolder>)?.submitList(data.photos)
             vb.viewClick.setOnClickListener {
                 this.init()
                 listener?.onSelectFeedingRoom(data, position)

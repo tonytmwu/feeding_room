@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.libraries.maps.CameraUpdateFactory
@@ -23,6 +25,8 @@ import com.net.feedingroom.R
 import com.net.feedingroom.databinding.FragmentMapsBinding
 import com.net.feedingroom.listener.LocationListener
 import com.net.feedingroom.ui.activity.MainActivityViewModel
+import com.net.feedingroom.ui.view.DividerItemDecoration
+import com.net.feedingroom.ui.view.FeedingRoomPhotoAdapter
 
 
 class MapsFragment : Fragment() {
@@ -35,6 +39,7 @@ class MapsFragment : Fragment() {
     private var locationListener: LocationListener? = null
     private val vmMainActivity by activityViewModels<MainActivityViewModel>()
     private var marker: Marker? = null
+    private val adapter by lazy { FeedingRoomPhotoAdapter() }
 
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
@@ -78,7 +83,14 @@ class MapsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
+        setRvPhotos()
         bindLiveData()
+    }
+
+    private fun setRvPhotos() {
+        vb.rvPhotos.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        vb.rvPhotos.addItemDecoration(DividerItemDecoration(0, 10))
+        vb.rvPhotos.adapter = adapter
     }
 
     private fun bindLiveData() {
@@ -87,6 +99,7 @@ class MapsFragment : Fragment() {
                 val latLng = LatLng(it.latitude.toDouble(), it.longitude.toDouble())
                 gotoPosition(latLng)
                 addMarker(latLng, it.name)
+                adapter.submitList(it.photos)
             }
         }
     }
