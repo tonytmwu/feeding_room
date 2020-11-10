@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">feeding_room</string>
-    <string name="title_map">地圖</string>
+    <string name="app_name">媽咪餵</string>
     <string name="title_search">搜尋</string>
     <string name="title_notifications">Notifications</string>
 

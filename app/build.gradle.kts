@@ -22,9 +22,19 @@ android {
     }
     buildFeatures.viewBinding = true
 
+    signingConfigs {
+        register("release") {
+            storeFile = file(rootProject.file("netFamilyStore.jks"))
+            storePassword = "Alibuda0630"
+            keyAlias = "netFamily"
+            keyPassword = "Alibuda0630"
+        }
+    }
+
     buildTypes {
         named("release") {
             isMinifyEnabled = true
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }

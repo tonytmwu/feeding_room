@@ -10,10 +10,4 @@
         android:name="com.net.feedingroom.ui.feedingroom.FeedingRoomFragment"
         android:label="@string/title_search"
         tools:layout="@layout/fragment_dashboard" />
-
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.net.feedingroom.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>
