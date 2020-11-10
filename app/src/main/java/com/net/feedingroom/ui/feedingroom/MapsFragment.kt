@@ -20,11 +20,15 @@ import com.google.android.libraries.maps.model.LatLng
 import com.google.android.libraries.maps.model.Marker
 import com.google.android.libraries.maps.model.MarkerOptions
 import com.net.feedingroom.R
+import com.net.feedingroom.databinding.FragmentMapsBinding
 import com.net.feedingroom.listener.LocationListener
 import com.net.feedingroom.ui.activity.MainActivityViewModel
 
 
 class MapsFragment : Fragment() {
+
+    private var _vb: FragmentMapsBinding? = null
+    private val vb get() = _vb!!
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var googleMap: GoogleMap
@@ -61,7 +65,13 @@ class MapsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_maps, container, false)
+        _vb = FragmentMapsBinding.inflate(inflater, container, false)
+        return vb.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _vb = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
