@@ -19,3 +19,12 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keep class com.net.feedingroom.model.** { *; }
+
+# Google Maps
+-keep,allowoptimization class com.google.android.libraries.maps.** { *; }
+
+# retrofit - okio
+# Animal Sniffer compileOnly dependency to ensure APIs are compatible with older versions of Java.
+-dontwarn org.codehaus.mojo.animal_sniffer.*
