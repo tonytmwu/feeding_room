@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.net.feedingroom.R
-import com.net.feedingroom.databinding.FeedingRoomThumbnailViewBinding
+import com.net.feedingroom.databinding.ViewFeedingRoomThumbnailBinding
 import com.net.feedingroom.model.Photo
 
 class FeedingRoomThumbnailAdapter: ListAdapter<Photo, FeedingRoomThumbnailAdapter.ViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val vb = FeedingRoomThumbnailViewBinding.inflate(inflater, parent, false)
+        val vb = ViewFeedingRoomThumbnailBinding.inflate(inflater, parent, false)
         return ViewHolder(vb)
     }
 
@@ -35,7 +35,7 @@ class FeedingRoomThumbnailAdapter: ListAdapter<Photo, FeedingRoomThumbnailAdapte
         }
     }
 
-    class ViewHolder(private val vb: FeedingRoomThumbnailViewBinding): RecyclerView.ViewHolder(vb.root) {
+    class ViewHolder(private val vb: ViewFeedingRoomThumbnailBinding): RecyclerView.ViewHolder(vb.root) {
         private val transformation = RoundedCornersTransformation(10f, 10f, 10f, 10f)
 
         fun bind(data: Photo) {
