@@ -96,8 +96,6 @@ class FeedingRoomFragment : Fragment(), FeedingRoomAdapter.FeedingRoomAdapterLis
         }
 
         vmMainActivity.currentLocationLiveData.observe(viewLifecycleOwner) { latLng ->
-            // TODO get data by gps
-            Log.d(javaClass.simpleName, "latLng = (${latLng.latitude}, ${latLng.longitude})")
             vm.searchFeedingRooms(latLng.latitude, latLng.longitude)
         }
     }
@@ -118,10 +116,12 @@ class FeedingRoomFragment : Fragment(), FeedingRoomAdapter.FeedingRoomAdapterLis
     }
 
     override fun onSelectFeedingRoom(room: FeedingRoom, position: Int?) {
-        vmMainActivity.updateSelectedFeedingRoom(room)
-        adapter.cleanSelectedItem()
-        position?.let { adapter.selectItem(it) }
-        expandBottomSheet()
+        if(vmMainActivity.selectedFeedingRoomLiveData.value != room) {
+            vmMainActivity.updateSelectedFeedingRoom(room)
+            adapter.cleanSelectedItem()
+            position?.let { adapter.selectItem(it) }
+            expandBottomSheet()
+        }
     }
 
     private fun expandBottomSheet() {
