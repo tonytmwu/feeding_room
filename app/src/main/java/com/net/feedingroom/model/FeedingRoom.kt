@@ -49,8 +49,11 @@ data class FeedingRoom(
     var isSelected: Boolean = false
 
     val photos get() = run {
-        photo?.split("\n")?.takeIf { it.isNotEmpty() }?.map { fileName ->
-            Photo(FeedingRoom.IMG_BASE_URL + fileName)
+        when(photo.isNullOrEmpty()) {
+            true -> null
+            false -> photo.split("\n").takeIf { it.isNotEmpty() }?.map { fileName ->
+                Photo(FeedingRoom.IMG_BASE_URL + fileName)
+            }
         }
     }
 }
