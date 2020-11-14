@@ -69,7 +69,7 @@ class FeedingRoomAdapter(
     private fun setupRecyclerView(context: Context, rv: RecyclerView) {
         rv.layoutManager =
             LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        rv.addItemDecoration(DividerItemDecoration(0, 5))
+        rv.addItemDecoration(DividerItemDecoration(5, 0, 0, 0))
         rv.adapter = FeedingRoomThumbnailAdapter(this)
     }
 

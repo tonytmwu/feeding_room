@@ -89,7 +89,7 @@ class MapsFragment : Fragment() {
 
     private fun setRvPhotos() {
         vb.rvPhotos.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        vb.rvPhotos.addItemDecoration(DividerItemDecoration(0, 10))
+        vb.rvPhotos.addItemDecoration(DividerItemDecoration(5, 10, 5, 0))
         vb.rvPhotos.adapter = adapter
     }
 
