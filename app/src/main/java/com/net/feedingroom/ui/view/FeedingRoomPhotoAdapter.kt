@@ -11,7 +11,7 @@ import com.net.feedingroom.R
 import com.net.feedingroom.databinding.ViewFeedingRoomPhotoBinding
 import com.net.feedingroom.model.Photo
 
-class FeedingRoomPhotoAdapter: ListAdapter<Photo, FeedingRoomPhotoAdapter.ViewHolder>(diffCallback) {
+class FeedingRoomPhotoAdapter(): ListAdapter<Photo, FeedingRoomPhotoAdapter.ViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)

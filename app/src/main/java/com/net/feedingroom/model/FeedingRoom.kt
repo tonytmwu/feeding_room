@@ -52,7 +52,7 @@ data class FeedingRoom(
         when(photo.isNullOrEmpty()) {
             true -> null
             false -> photo.split("\n").takeIf { it.isNotEmpty() }?.map { fileName ->
-                Photo(FeedingRoom.IMG_BASE_URL + fileName)
+                Photo(number, FeedingRoom.IMG_BASE_URL + fileName)
             }
         }
     }

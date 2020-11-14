@@ -11,7 +11,15 @@ import com.net.feedingroom.R
 import com.net.feedingroom.databinding.ViewFeedingRoomThumbnailBinding
 import com.net.feedingroom.model.Photo
 
-class FeedingRoomThumbnailAdapter: ListAdapter<Photo, FeedingRoomThumbnailAdapter.ViewHolder>(diffCallback) {
+class FeedingRoomThumbnailAdapter(
+    private val listener: FeedingRoomThumbnailAdapterListener? = null
+): ListAdapter<Photo, FeedingRoomThumbnailAdapter.ViewHolder>(diffCallback) {
+
+    var parentListAdapterPosition: Int? = null
+
+    interface FeedingRoomThumbnailAdapterListener {
+        fun onThumbnailClick(roomId: String?, parentListAdapterPosition: Int?)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -23,14 +31,17 @@ class FeedingRoomThumbnailAdapter: ListAdapter<Photo, FeedingRoomThumbnailAdapte
         holder.bind(getItem(position))
     }
 
-    class ViewHolder(private val vb: ViewFeedingRoomThumbnailBinding): RecyclerView.ViewHolder(vb.root) {
+    inner class ViewHolder(private val vb: ViewFeedingRoomThumbnailBinding): RecyclerView.ViewHolder(vb.root) {
         private val transformation = RoundedCornersTransformation(10f, 10f, 10f, 10f)
 
         fun bind(data: Photo) {
-            vb.ivPhoto.load(data.url) {
-                crossfade(true)
-                error(R.drawable.ic_placeholder_img)
-                transformations(transformation)
+            vb.ivPhoto.apply {
+                setOnClickListener { listener?.onThumbnailClick(data.roomId, parentListAdapterPosition) }
+                load(data.url) {
+                    crossfade(true)
+                    error(R.drawable.ic_placeholder_img)
+                    transformations(transformation)
+                }
             }
         }
     }

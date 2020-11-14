@@ -14,7 +14,8 @@ import com.net.feedingroom.model.Photo
 
 class FeedingRoomAdapter(
     private val listener: FeedingRoomAdapterListener? = null
-): ListAdapter<FeedingRoom, FeedingRoomAdapter.ViewHolder>(diffCallback) {
+): ListAdapter<FeedingRoom, FeedingRoomAdapter.ViewHolder>(diffCallback),
+    FeedingRoomThumbnailAdapter.FeedingRoomThumbnailAdapterListener {
 
     interface FeedingRoomAdapterListener {
         fun onSelectFeedingRoom(room: FeedingRoom, position: Int?)
@@ -69,7 +70,7 @@ class FeedingRoomAdapter(
         rv.layoutManager =
             LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         rv.addItemDecoration(DividerItemDecoration(0, 5))
-        rv.adapter = FeedingRoomThumbnailAdapter()
+        rv.adapter = FeedingRoomThumbnailAdapter(this)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -80,15 +81,20 @@ class FeedingRoomAdapter(
         open fun bind(data: FeedingRoom, position: Int?) {}
     }
 
-    private inner class DataViewHolder(private val vb: ViewFeedingRoomBinding,
-                     private val listener: FeedingRoomAdapterListener?): ViewHolder(vb.root) {
+    private inner class DataViewHolder(
+                            private val vb: ViewFeedingRoomBinding,
+                            private val listener: FeedingRoomAdapterListener?,
+    ): ViewHolder(vb.root) {
         override fun bind(data: FeedingRoom, position: Int?) {
             vb.tvTitle.text = data.name
             vb.tvPhoneNumber.text = data.tel
             vb.tvAddress.text = data.address
-            (vb.rvPhotos.adapter as? ListAdapter<Photo, FeedingRoomThumbnailAdapter.ViewHolder>)?.submitList(data.photos)
-            vb.viewClick.setOnClickListener {
-                listener?.onSelectFeedingRoom(data, position)
+            (vb.rvPhotos.adapter as? FeedingRoomThumbnailAdapter)?.apply {
+                this.parentListAdapterPosition = position
+                submitList(data.photos)
+            }
+            vb.rvPhotos.setOnClickListener {
+                onThumbnailClick(data.number, position)
             }
             setSelectedColor(vb, data.isSelected)
         }
@@ -117,6 +123,18 @@ class FeedingRoomAdapter(
 
             override fun areContentsTheSame(oldItem: FeedingRoom, newItem: FeedingRoom): Boolean {
                 return oldItem == newItem
+            }
+        }
+    }
+
+    private fun findItemByRoomId(roomId: String): FeedingRoom? {
+        return getItems().find { it.number != null && it.number ==  roomId}
+    }
+
+    override fun onThumbnailClick(roomId: String?, parentListAdapterPosition: Int?) {
+        roomId?.let {
+            findItemByRoomId(it)?.let { room ->
+                listener?.onSelectFeedingRoom(room, parentListAdapterPosition)
             }
         }
     }
