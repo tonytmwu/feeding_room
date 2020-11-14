@@ -93,8 +93,8 @@ class FeedingRoomAdapter(
                 this.parentListAdapterPosition = position
                 submitList(data.photos)
             }
-            vb.rvPhotos.setOnClickListener {
-                onThumbnailClick(data.number, position)
+            vb.root.setOnClickListener {
+                listener?.onSelectFeedingRoom(data, position)
             }
             setSelectedColor(vb, data.isSelected)
         }
