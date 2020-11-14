@@ -10,7 +10,6 @@ import com.net.feedingroom.R
 import com.net.feedingroom.databinding.ViewFeedingRoomBinding
 import com.net.feedingroom.databinding.ViewLoadingFeedingRoomBinding
 import com.net.feedingroom.model.FeedingRoom
-import com.net.feedingroom.model.Photo
 
 class FeedingRoomAdapter(
     private val listener: FeedingRoomAdapterListener? = null
@@ -20,6 +19,8 @@ class FeedingRoomAdapter(
     interface FeedingRoomAdapterListener {
         fun onSelectFeedingRoom(room: FeedingRoom, position: Int?)
     }
+
+    private val onlyChangeTextColor = true
 
     private fun getItems(): List<FeedingRoom> {
         val list = ArrayList<FeedingRoom>()
@@ -33,13 +34,13 @@ class FeedingRoomAdapter(
         val position =  getItems().indexOfFirst { it.isSelected }
         if(position > -1) {
             getItem(position).isSelected = false
-            notifyItemChanged(position)
+            notifyItemChanged(position, onlyChangeTextColor)
         }
     }
 
     fun selectItem(position: Int) {
         getItem(position).isSelected = true
-        notifyItemChanged(position)
+        notifyItemChanged(position, onlyChangeTextColor)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -74,29 +75,36 @@ class FeedingRoomAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position), position)
+//        holder.bind(getItem(position), position)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: MutableList<Any>) {
+        val onlyChangeTextColor = if(payloads.isNotEmpty()) {
+            payloads[0] as? Boolean
+        } else { null }
+        holder.bind(getItem(position), position, onlyChangeTextColor)
     }
 
     abstract inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        open fun bind(data: FeedingRoom, position: Int?) {}
+        open fun bind(data: FeedingRoom, position: Int?, onlyChangeTextColor: Boolean?) {}
     }
 
     private inner class DataViewHolder(
                             private val vb: ViewFeedingRoomBinding,
-                            private val listener: FeedingRoomAdapterListener?,
+                            private val listener: FeedingRoomAdapterListener?
     ): ViewHolder(vb.root) {
-        override fun bind(data: FeedingRoom, position: Int?) {
-            vb.tvTitle.text = data.name
-            vb.tvPhoneNumber.text = data.tel
-            vb.tvAddress.text = data.address
-            (vb.rvPhotos.adapter as? FeedingRoomThumbnailAdapter)?.apply {
-                this.parentListAdapterPosition = position
-                submitList(data.photos)
-            }
-            vb.root.setOnClickListener {
-                listener?.onSelectFeedingRoom(data, position)
-            }
+        override fun bind(data: FeedingRoom, position: Int?, onlyChangeTextColor: Boolean?) {
             setSelectedColor(vb, data.isSelected)
+            if(onlyChangeTextColor != true) {
+                vb.tvTitle.text = data.name
+                vb.tvPhoneNumber.text = data.tel
+                vb.tvAddress.text = data.address
+                (vb.rvPhotos.adapter as? FeedingRoomThumbnailAdapter)?.apply {
+                    this.parentListAdapterPosition = position
+                    submitList(data.photos)
+                }
+                vb.root.setOnClickListener { listener?.onSelectFeedingRoom(data, position) }
+            }
         }
     }
 
