@@ -74,12 +74,10 @@ class FeedingRoomAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position), position)
-        holder.init()
     }
 
     abstract inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         open fun bind(data: FeedingRoom, position: Int?) {}
-        open fun init() {}
     }
 
     private inner class DataViewHolder(private val vb: ViewFeedingRoomBinding,
@@ -90,14 +88,9 @@ class FeedingRoomAdapter(
             vb.tvAddress.text = data.address
             (vb.rvPhotos.adapter as? ListAdapter<Photo, FeedingRoomThumbnailAdapter.ViewHolder>)?.submitList(data.photos)
             vb.viewClick.setOnClickListener {
-                this.init()
                 listener?.onSelectFeedingRoom(data, position)
             }
             setSelectedColor(vb, data.isSelected)
-        }
-
-        override fun init() {
-            vb.mlRoot.transitionToStart()
         }
     }
 
