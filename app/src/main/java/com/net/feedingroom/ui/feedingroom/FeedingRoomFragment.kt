@@ -97,6 +97,7 @@ class FeedingRoomFragment : Fragment(), FeedingRoomAdapter.FeedingRoomAdapterLis
 
         vmMainActivity.currentLocationLiveData.observe(viewLifecycleOwner) { latLng ->
             vm.searchFeedingRooms(latLng.latitude, latLng.longitude)
+            context?.let { vm.logSearchKeyword(it, latLng = latLng) }
         }
     }
 
@@ -113,6 +114,7 @@ class FeedingRoomFragment : Fragment(), FeedingRoomAdapter.FeedingRoomAdapterLis
     private fun searchFeedingRooms(address: String) {
         vm.searchFeedingRooms(address)
         searchLocation = address
+        context?.let { vm.logSearchKeyword(it, location = address) }
     }
 
     override fun onSelectFeedingRoom(room: FeedingRoom, position: Int?) {

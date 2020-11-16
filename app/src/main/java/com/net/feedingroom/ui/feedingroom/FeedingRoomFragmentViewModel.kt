@@ -1,6 +1,10 @@
 package com.net.feedingroom.ui.feedingroom
 
+import android.content.Context
+import android.os.Bundle
 import androidx.lifecycle.*
+import com.google.android.libraries.maps.model.LatLng
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.net.feedingroom.model.FeedingRoomInfo
 import com.net.feedingroom.repository.FeedingRoomService
 import com.net.feedingroom.ui.state.LoadingState
@@ -40,5 +44,14 @@ class FeedingRoomFragmentViewModel : ViewModel() {
     private fun inLoaded(rooms: FeedingRoomInfo?) {
         _feedingRooms.postValue(rooms)
         _loadingState.postValue(LoadingState.Done)
+    }
+
+    fun logSearchKeyword(context: Context, location: String? = null, latLng: LatLng? = null) {
+        val firebaseAnalysis = FirebaseAnalytics.getInstance(context)
+        val bundle = Bundle().apply {
+            location?.let { putString("location", location) }
+            latLng?.let{ putString("position", "(${latLng.latitude}, ${latLng.longitude}") }
+        }
+        firebaseAnalysis.logEvent("search_event", bundle)
     }
 }
