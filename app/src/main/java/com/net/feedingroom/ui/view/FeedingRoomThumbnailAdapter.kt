@@ -39,7 +39,7 @@ class FeedingRoomThumbnailAdapter(
                 setOnClickListener { listener?.onThumbnailClick(data.roomId, parentListAdapterPosition) }
                 load(data.url) {
                     crossfade(true)
-                    error(R.drawable.ic_placeholder_img)
+                    error(R.drawable.ic_image_search)
                     transformations(transformation)
                 }
             }

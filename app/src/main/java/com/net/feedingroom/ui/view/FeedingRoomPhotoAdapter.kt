@@ -30,7 +30,7 @@ class FeedingRoomPhotoAdapter(): ListAdapter<Photo, FeedingRoomPhotoAdapter.View
         fun bind(photo: Photo) {
             vb.ivPhoto.load(photo.url) {
                 crossfade(true)
-                error(R.drawable.ic_placeholder_img)
+                error(R.drawable.ic_image_search)
                 transformations(transformation)
             }
         }
