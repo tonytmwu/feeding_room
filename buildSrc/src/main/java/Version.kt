@@ -1,5 +1,5 @@
 object Version {
 
-    const val kotlin = "1.4.10"
+    const val kotlin = "1.4.20"
 
 }
