@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -24,10 +26,12 @@ android {
 
     signingConfigs {
         register("release") {
-            storeFile = file(rootProject.file("netFamilyStore.jks"))
-            storePassword = "Alibuda0630"
-            keyAlias = "netFamily"
-            keyPassword = "Alibuda0630"
+            gradleLocalProperties(rootDir).apply {
+                storeFile = file(rootProject.file(getProperty("storeFilePath")))
+                storePassword = getProperty("storePassword")
+                keyAlias = getProperty("keyAlias")
+                keyPassword = getProperty("keyPassword")
+            }
         }
     }
 
