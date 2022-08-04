@@ -1,4 +1,10 @@
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import java.io.File
+import java.io.FileInputStream
+import java.util.*
+
+val keyProperty = Properties().apply {
+    load(FileInputStream(File(rootProject.rootDir, "feeding_room_key.properties")))
+}
 
 plugins {
     id("com.android.application")
@@ -25,12 +31,10 @@ android {
 
     signingConfigs {
         register("release") {
-            gradleLocalProperties(rootDir).apply {
-                storeFile = file(rootProject.file(getProperty("storeFilePath")))
-                storePassword = getProperty("storePassword")
-                keyAlias = getProperty("keyAlias")
-                keyPassword = getProperty("keyPassword")
-            }
+            keyAlias = keyProperty.getProperty("keyAlias")
+            keyPassword = keyProperty.getProperty("keyPassword")
+            storeFile = file(keyProperty.getProperty("storeFile"))
+            storePassword = keyProperty.getProperty("storePassword")
         }
     }
 
@@ -42,8 +46,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions.jvmTarget = "1.8"
 }

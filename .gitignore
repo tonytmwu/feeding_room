@@ -92,3 +92,4 @@ lint/tmp/
 
 compiler.xml
 misc.xml
+/feeding_room_key.properties
