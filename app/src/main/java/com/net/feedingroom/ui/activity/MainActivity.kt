@@ -6,7 +6,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.libraries.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLng
 import com.net.feedingroom.R
 import com.net.feedingroom.listener.LocationListener
 import com.net.feedingroom.databinding.ActivityMainBinding

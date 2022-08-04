@@ -14,13 +14,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.libraries.maps.CameraUpdateFactory
-import com.google.android.libraries.maps.GoogleMap
-import com.google.android.libraries.maps.OnMapReadyCallback
-import com.google.android.libraries.maps.SupportMapFragment
-import com.google.android.libraries.maps.model.LatLng
-import com.google.android.libraries.maps.model.Marker
-import com.google.android.libraries.maps.model.MarkerOptions
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import com.net.feedingroom.R
 import com.net.feedingroom.databinding.FragmentMapsBinding
 import com.net.feedingroom.listener.LocationListener
@@ -41,7 +41,6 @@ class MapsFragment : Fragment() {
     private var marker: Marker? = null
     private val adapter by lazy { FeedingRoomPhotoAdapter() }
 
-    @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
         this.googleMap = googleMap
         permissionRequest.launch(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -69,7 +68,7 @@ class MapsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _vb = FragmentMapsBinding.inflate(inflater, container, false)
         return vb.root
     }

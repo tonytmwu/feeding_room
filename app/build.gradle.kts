@@ -20,8 +20,8 @@ android {
 
     defaultConfig {
         applicationId = "com.net.feedingroom"
-        minSdkVersion(Config.minSdk)
-        targetSdkVersion(Config.targetSdk)
+        minSdk = Config.minSdk
+        targetSdk = Config.targetSdk
         versionCode = Config.versionCode
         versionName = Config.versionName
 
@@ -49,7 +49,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "11"
 }
 
 dependencies {
@@ -71,8 +71,9 @@ dependencies {
     kapt("androidx.room:room-compiler:2.2.5")
     implementation("androidx.room:room-ktx:2.2.5")
     // google map
-    implementation("com.google.android.libraries.maps:maps:3.1.0-beta")
-    implementation("com.google.android.gms:play-services-gcm:17.0.0")
+//    implementation("com.google.android.libraries.maps:maps:3.1.0-beta")
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
+    implementation("com.google.android.gms:play-services-location:20.0.0")
     // fragment ktx
     implementation("androidx.fragment:fragment-ktx:1.2.5")
     // LiveData

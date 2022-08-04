@@ -3,7 +3,7 @@ package com.net.feedingroom.ui.feedingroom
 import android.content.Context
 import android.os.Bundle
 import androidx.lifecycle.*
-import com.google.android.libraries.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.net.feedingroom.model.FeedingRoomInfo
 import com.net.feedingroom.repository.FeedingRoomService

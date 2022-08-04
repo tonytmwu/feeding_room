@@ -3,7 +3,7 @@ package com.net.feedingroom.ui.activity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.android.libraries.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLng
 import com.net.feedingroom.model.FeedingRoom
 
 class MainActivityViewModel: ViewModel() {
