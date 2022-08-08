@@ -19,5 +19,5 @@ https://play.google.com/store/apps/details?id=com.net.feedingroom
 Android - MVVM, LiveData, Coroutine, Room, Retrofit, Google Map API, Crashlytics, Firebase Analytics
 
 ### 畫面截圖
-[![](https://play-lh.googleusercontent.com/WbilkuqebiuH0agIhE6ZBHKydlndyRTHGhPbu64OJ25xImVBA8o6p5SwkF2l8XzalA=w5120-h2880-rw)
+[![](https://play-lh.googleusercontent.com/WbilkuqebiuH0agIhE6ZBHKydlndyRTHGhPbu64OJ25xImVBA8o6p5SwkF2l8XzalA=w1052-h592-rw)
 [![](https://play-lh.googleusercontent.com/FDG2MGX4f9f5kxESb0BMWZXwQtCwDAozZTGejuK7jRKVwr5bBSKxQtUXEs8xM_aPTgGf=w1052-h592-rw)
