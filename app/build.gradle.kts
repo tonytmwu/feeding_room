@@ -1,9 +1,13 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import java.io.File
 import java.io.FileInputStream
 import java.util.*
 
 val keyProperty = Properties().apply {
     load(FileInputStream(File(rootProject.rootDir, "feeding_room_key.properties")))
+}
+val localProperty = Properties().apply {
+    load(FileInputStream(File(rootProject.rootDir, "local.properties")))
 }
 
 plugins {
@@ -30,6 +34,14 @@ android {
     buildFeatures.viewBinding = true
 
     signingConfigs {
+
+        named("debug") {
+            keyAlias = localProperty.getProperty("keyAlias")
+            keyPassword = localProperty.getProperty("keyPassword")
+            storeFile = file(rootProject.file(localProperty.getProperty("storeFile")))
+            storePassword = localProperty.getProperty("storePassword")
+        }
+
         register("release") {
             keyAlias = keyProperty.getProperty("keyAlias")
             keyPassword = keyProperty.getProperty("keyPassword")
@@ -39,6 +51,10 @@ android {
     }
 
     buildTypes {
+        named("debug") {
+            signingConfig = signingConfigs.getByName("debug")
+        }
+
         named("release") {
             isMinifyEnabled = true
             signingConfig = signingConfigs.getByName("release")
