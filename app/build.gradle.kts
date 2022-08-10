@@ -6,8 +6,11 @@ import java.util.*
 val keyProperty = Properties().apply {
     load(FileInputStream(File(rootProject.rootDir, "feeding_room_key.properties")))
 }
-val localProperty = Properties().apply {
-    load(FileInputStream(File(rootProject.rootDir, "local.properties")))
+
+val localProperty = File(rootProject.rootDir, "local.properties").takeIf { it.exists() }?.let { file ->
+    Properties().apply {
+        load(FileInputStream(file))
+    }
 }
 
 plugins {
@@ -36,10 +39,12 @@ android {
     signingConfigs {
 
         named("debug") {
-            keyAlias = localProperty.getProperty("keyAlias")
-            keyPassword = localProperty.getProperty("keyPassword")
-            storeFile = file(rootProject.file(localProperty.getProperty("storeFile")))
-            storePassword = localProperty.getProperty("storePassword")
+            keyAlias = localProperty?.getProperty("keyAlias") ?: ""
+            keyPassword = localProperty?.getProperty("keyPassword")
+            storeFile = localProperty?.getProperty("storeFile")?.let { file ->
+                file(rootProject.file(file))
+            }
+            storePassword = localProperty?.getProperty("storePassword")
         }
 
         register("release") {
